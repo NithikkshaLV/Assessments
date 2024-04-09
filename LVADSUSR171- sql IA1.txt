@@ -1,0 +1,64 @@
+lab 2
+4.select productTypeid,sum((TotalSalesAmount*UnitsSold)) as sales
+    from QuarterlySales
+    group by producttypeid
+    having producttypeid=1;
+
+5. select quarter,producttypeid, totalsalesamount
+    from QuarterlySales
+    where quarter='Q1' 
+    order by totalsalesamount desc
+    limit 1;
+
+6. select quarter,producttypeid, avg(totalsalesamount/unitssold) as average
+    from QuarterlySales
+    group by producttypeid
+    having quarter='Q2';
+
+LAB 4
+10.select customername, feedbackscore
+    from InsuranceActivities
+    where feedbackscore>8;
+
+11. select avg(feedbackscore) from InsuranceActivities;
+    select claimscount,customername, feedbackscore, AnnualPremium
+    from InsuranceActivities
+    where feedbackscore>8 and claimscount>=1;
+
+12.select case when claimscount=0 then 'no history' when claimscount<4 then 'moderate history' 
+    when claimscount>=4 then 'high history' end as history,
+    policytype, avg(feedbackscore)
+    from InsuranceActivities
+    group by policytype;
+
+lab 1;
+ 1.select avg(dataused) from customerinteractions;
+    SELECT MONTH, DataUsed from customerinteractions
+    where month="March" and dataused>2.42
+    ;
+
+2.select customerid, group_concat(month), sum(callduration)
+    from customerinteractions
+    group by customerid
+    having sum(march)>sum(february);
+
+3. select group_concat(month), customerid, messagecount, dataused
+    group by customerid
+    order by messagecount, dataused desc;
+
+lab 3;
+7.  select EnergySource, group_concat(Month), avg(consumptionKwh)
+    from SectorEnergyConsumption
+    group by EnergySource;
+
+8. select group_concat(month),  sum(consumptionkwh)
+    from SectorEnergyConsumption
+    group by month;
+
+9.select group_concat(month), avg(consumptionkwh), energysource
+    from SectorEnergyConsumption
+    group by energysource
+    having month='february';
+
+
+
